@@ -82,7 +82,12 @@ def open_application(app_name: str, path: Path = None):
         return f"⚠️ Unknown app: {app_name}"
         
     try:
-        subprocess.Popen(cmd, shell=True)
+        if system == "Windows":
+            # Use shell=True for Windows start commands as they require shell interpretation
+            subprocess.Popen(cmd, shell=True)
+        else:
+            # Use shell=False for Unix-like systems for better security
+            subprocess.Popen(cmd, shell=False)
         return f"🚀 Opened {app_name}"
     except Exception as e:
         return f"❌ Failed to open {app_name}: {e}"

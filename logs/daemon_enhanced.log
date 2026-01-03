@@ -127,3 +127,5 @@ AttributeError: 'NoneType' object has no attribute 'get'
 2026-01-03 12:20:43,557 INFO State transition: listening -> thinking
 2026-01-03 12:20:43,637 INFO State transition: thinking -> executing
 2026-01-03 12:20:43,810 INFO Daemon stopped by voice command
+2026-01-03 17:28:10,191 INFO Raj enhanced daemon started
+2026-01-03 17:28:23,113 INFO Daemon stopped by user (KeyboardInterrupt)

@@ -79,6 +79,9 @@ def listen():
     adaptive_silence = MAX_SILENCE
     collected_frames = []
 
+    # Initialize RMS threshold (can be overridden by whisper mode)
+    rms_threshold = RMS_THRESHOLD
+
     # Settings
     WAKE_WORDS = ["hey raj", "hey ray", "hey rage", "hey rajj", "hay raj", "hey rajah", "hey rajj", "he raj", "raj"]
     EXECUTE_WORDS = ["execute", "run", "do it", "go", "start"]
@@ -91,7 +94,7 @@ def listen():
     if not wake_word_enabled:
         # Level 5: Whisper Mode check
         if SESSION.get("voice_prefs", {}).get("whisper_mode"):
-            RMS_THRESHOLD = 50
+            rms_threshold = 50
             
         state = "LISTENING"
         print("\n[🎤 LISTENING] Wake word disabled")
@@ -118,7 +121,7 @@ def listen():
                         is_speech_vad = False
 
                 rms = _frame_rms(data)
-                is_speech_energy = rms > RMS_THRESHOLD
+                is_speech_energy = rms > rms_threshold
 
                 # treat as speech if either VAD or energy says so
                 is_speech = is_speech_vad or is_speech_energy

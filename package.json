@@ -1,0 +1,24 @@
+{
+  "name": "val-voice-assistant",
+  "version": "1.0.0",
+  "description": "VAL - Voice Assistant Learning System",
+  "main": "val.py",
+  "scripts": {
+    "start": "python val.py",
+    "test": "python -m pytest tests/",
+    "lint": "python -m flake8",
+    "init": "python initialize_memory.py"
+  },
+  "keywords": ["voice-assistant", "ai", "python", "automation"],
+  "author": "VAL Project",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/your-repo/val"
+  },
+  "engines": {
+    "python": ">=3.8.0"
+  },
+  "devDependencies": {},
+  "dependencies": {}
+}

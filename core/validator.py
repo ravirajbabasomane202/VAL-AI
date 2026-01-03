@@ -1,4 +1,8 @@
-def validate_blueprint(blueprint: dict):
+def validate_blueprint(blueprint):
+    """Validate and clean a blueprint structure"""
+    if not isinstance(blueprint, dict):
+        raise ValueError(f"Blueprint must be a dictionary, got {type(blueprint)}")
+
     blueprint.setdefault("folders", [])
     blueprint.setdefault("files", [])
     

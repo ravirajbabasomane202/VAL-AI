@@ -2,6 +2,7 @@
 VAL Enhanced - Main entry point with cognitive memory system
 """
 import sys
+import json
 from core.prompts import (
     ask_project_location,
     ask_project_name,
@@ -12,6 +13,8 @@ import argparse
 from core.preview import show_preview
 from core.validator import validate_blueprint
 from engine.scaffold import apply_blueprint
+from agent.core import CriticAgent
+from engine.intent_router import route
 
 from blueprints.single_folder import blueprint as single_folder
 from blueprints.custom_multi import blueprint as custom_multi
@@ -123,7 +126,11 @@ def main():
                 bp = validate_blueprint(bp)
                 project_type = "flutter"
             else:
-                return
+                # Default fallback to custom multi-project blueprint
+                print("Attempting default fallback generation...")
+                bp = custom_multi()
+                bp = validate_blueprint(bp)
+                project_type = "custom"
     
     elif method == "3":
         # Similar to last project
@@ -169,7 +176,6 @@ def main():
             print(f"\n📋 Generated Plan ({len(plan)} steps):")
             
             # Level 7: Critic Check
-            from agent.core import CriticAgent
             critic = CriticAgent()
             eval_result = critic.evaluate(plan)
             
@@ -181,7 +187,6 @@ def main():
             
             confirm = input(f"\nExecute plan? (Risk: {eval_result['risk_level']}) (y/n): ").strip().lower()
             if confirm in ["y", "yes"]:
-                from engine.intent_router import route
                 for step in plan:
                     print(f"\n▶️ Executing: {step.get('intent')}...")
                     result = route(step, memory)
@@ -251,16 +256,20 @@ if __name__ == "__main__":
         if args.enhanced:
             # Import enhanced daemon
             try:
-                from daemon.service import run as daemon_run_enhanced
+                from daemon.service import run as daemon_run
                 print("🚀 Starting Raj Enhanced Cognitive Daemon...")
-                daemon_run_enhanced()
+                # Set enhanced mode in session
+                SESSION["enhanced_mode"] = True
+                daemon_run()
             except ImportError:
                 print("❌ Enhanced daemon not available. Falling back to regular daemon.")
                 from daemon.service import run as daemon_run
+                SESSION["enhanced_mode"] = False
                 daemon_run()
         else:
             # Import regular daemon
             from daemon.service import run as daemon_run
+            SESSION["enhanced_mode"] = False
             daemon_run()
     else:
         main()

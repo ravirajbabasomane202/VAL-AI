@@ -1,0 +1,39 @@
+version: '3.8'
+
+services:
+  val:
+    build: .
+    container_name: val-assistant
+    volumes:
+      - ./memory:/app/memory
+      - ./logs:/app/logs
+      - ./models:/app/models
+      - ./voice:/app/voice
+    environment:
+      - OLLAMA_BASE_URL=http://host.docker.internal:11434
+      - PYTHONPATH=/app
+    ports:
+      - "8000:8000"
+    restart: unless-stopped
+    depends_on:
+      - ollama
+    networks:
+      - val-network
+
+  ollama:
+    image: ollama/ollama:latest
+    container_name: val-ollama
+    ports:
+      - "11434:11434"
+    volumes:
+      - ollama_data:/root/.ollama
+    restart: unless-stopped
+    networks:
+      - val-network
+
+volumes:
+  ollama_data:
+
+networks:
+  val-network:
+    driver: bridge

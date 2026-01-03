@@ -32,11 +32,10 @@ JSON format:
 SIMPLE JSON format (use this exactly):
 {
   "folders": ["src", "tests", "docs"],
-  "folders": ["folder1", "folder2"],
   "files": [
     {"path": "README.md", "content": "# Project\n## Description"},
     {"path": "src/main.py", "content": "# Main application"},
-    {"path": ".gitignore", "content": "*.pyc\n__pycache__/"}
+    {"path": ".gitignore", "content": "*.pyc\n__pycache__/"},
     {"path": "file1.txt", "content": "Content here"},
     {"path": "folder/file2.py", "content": "# Python code"}
   ]
@@ -119,8 +118,8 @@ Generate blueprint now:
         print(f"Attempting to fix JSON...")
         
         # Try to fix common JSON issues
-        # 1. Fix escape sequences
-        json_str = json_str.replace('\\', '\\\\')
+        # 1. Remove any extra backslashes that might cause issues
+        json_str = json_str.replace('\\\\', '\\')
         
         # 2. Fix invalid control characters
         json_str = ''.join(c for c in json_str if c == '\n' or c == '\t' or c == '\r' or (32 <= ord(c) <= 126))
@@ -147,7 +146,7 @@ Generate blueprint now:
 def _extract_simple_structure(response: str):
     """Fallback method to extract structure from text when JSON fails"""
     lines = response.split('\n')
-    folders = []
+    folders = set()
     files = []
     
     for line in lines:
@@ -155,23 +154,39 @@ def _extract_simple_structure(response: str):
         # Look for directory indicators
         if any(indicator in line for indicator in ['/', '├', '└', '│', '└──', '├──']):
             # Extract potential path
-            clean_line = line.replace('├──', '').replace('└──', '').replace('│', '').strip()
+            clean_line = line.replace('├──', '').replace('└──', '').replace('│', '').replace('    ', '').strip()
             
-            # Check if it's a folder (ends with / or contains / but no file extension)
-            if '/' in clean_line:
-                path_parts = clean_line.split('/')
-                # If ends with empty or looks like folder
-                if len(path_parts) > 1 and ('.' not in path_parts[-1] or path_parts[-1] == ''):
-                    folder_path = '/'.join(path_parts[:-1]) if path_parts[-1] == '' else clean_line
-                    if folder_path and folder_path not in folders:
-                        folders.append(folder_path)
-                # Could be a file
-                elif '.' in path_parts[-1]:
-                    if clean_line and clean_line not in files:
-                        files.append({"path": clean_line, "content": ""})
-            elif clean_line and '.' not in clean_line and clean_line not in ['', 'flutter_app']:
-                # Might be a folder
-                folders.append(clean_line)
+            if clean_line:
+                # Check if it's a folder (ends with / or contains / but no file extension)
+                if clean_line.endswith('/'):
+                    # Explicit folder
+                    folder_path = clean_line.rstrip('/')
+                    folders.add(folder_path)
+                elif '/' in clean_line:
+                    path_parts = clean_line.split('/')
+                    # If ends with empty or looks like folder
+                    if len(path_parts) > 1 and ('.' not in path_parts[-1] or path_parts[-1] == ''):
+                        folder_path = '/'.join(path_parts[:-1]) if path_parts[-1] == '' else clean_line
+                        if folder_path:
+                            folders.add(folder_path)
+                    # Could be a file
+                    elif '.' in path_parts[-1]:
+                        if clean_line and not any(f['path'] == clean_line for f in files):
+                            files.append({"path": clean_line, "content": ""})
+                elif '.' not in clean_line and clean_line not in ['', 'flutter_app']:
+                    # Might be a top-level folder
+                    folders.add(clean_line)
+    
+    # Extract parent folders from file paths
+    for file_info in files:
+        path_parts = file_info['path'].split('/')
+        for i in range(len(path_parts) - 1):
+            parent_path = '/'.join(path_parts[:i+1])
+            if parent_path:
+                folders.add(parent_path)
+    
+    # Convert folders set to sorted list
+    folders = sorted(list(folders))
     
     # If we didn't find anything, return a basic structure
     if not folders and not files:
@@ -184,6 +199,6 @@ def _extract_simple_structure(response: str):
         }
     
     return {
-        "folders": list(set(folders)),
+        "folders": folders,
         "files": files if files else [{"path": "README.md", "content": "# Generated App"}]
     }

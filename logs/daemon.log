@@ -1,6 +1,8 @@
-2025-12-31 12:34:49,080 INFO Received voice command: 'read plato project'
-2025-12-31 12:34:51,598 INFO Extracted intent: {'intent': 'open_project', 'name': 'plato', 'location': '.'}
-2025-12-31 12:34:51,599 INFO Action result: '\u26a0\ufe0f Unknown intent'
-2025-12-31 12:35:19,381 INFO Received voice command: 'stop'
-2025-12-31 12:35:20,691 INFO Extracted intent: {'intent': 'stop'}
-2025-12-31 12:35:20,770 INFO Daemon stopped by voice command
+2025-12-31 15:26:19,187 INFO VAL daemon started
+2025-12-31 15:29:28,625 INFO Daemon stopped by user (KeyboardInterrupt)
+2025-12-31 15:29:39,667 INFO VAL daemon started
+2025-12-31 15:31:48,725 INFO Received voice command: 'stop'
+2025-12-31 15:31:58,049 INFO Extracted intent: {'intent': 'stop', 'name': '', 'location': '.'}
+2025-12-31 15:31:58,223 INFO Daemon stopped by voice command
+2025-12-31 15:34:07,239 INFO VAL daemon started
+2025-12-31 15:40:04,096 INFO Daemon stopped by user (KeyboardInterrupt)

@@ -1,15 +1,15 @@
 from utils.fs import safe_create_dir, safe_create_file
 from pathlib import Path
-from engine.undo import log_action
+from engine.undo import undo_manager
 
 def apply_blueprint(base: Path, blueprint: dict):
     safe_create_dir(base)
-    log_action("create_folder", str(base))
+    undo_manager.log_operation("create_project", {"path": str(base), "type": "folder"})
 
     for folder in blueprint.get("folders", []):
         p = base / folder
         safe_create_dir(p)
-        log_action("create_folder", str(p))
+        undo_manager.log_operation("create_folder", {"path": str(p)})
 
     for file_entry in blueprint.get("files", []):
         if isinstance(file_entry, dict):
@@ -29,4 +29,4 @@ def apply_blueprint(base: Path, blueprint: dict):
         if file_path:
             p = base / file_path
             safe_create_file(p, content)
-            log_action("create_file", str(p))
+            undo_manager.log_operation("create_file", {"path": str(p)})

@@ -131,3 +131,14 @@
 {"time": "2025-12-31T14:09:14.876596", "action": "create_file", "path": "D:\\Company_Data\\ValExparimats\\new1\\node_app\\src\\middleware\\auth.middleware.js"}
 {"time": "2025-12-31T14:09:14.877598", "action": "create_file", "path": "D:\\Company_Data\\ValExparimats\\new1\\node_app\\public\\index.html"}
 {"time": "2025-12-31T14:09:14.877598", "action": "create_file", "path": "D:\\Company_Data\\ValExparimats\\new1\\node_app\\tests\\auth.test.js"}
+{"time": "2026-01-03T12:09:48.283909", "action": "create_folder", "path": "flask_project"}
+{"time": "2026-01-03T12:09:48.283909", "action": "create_folder", "path": "flask_project\\app"}
+{"time": "2026-01-03T12:09:48.283909", "action": "create_folder", "path": "flask_project\\app\\models"}
+{"time": "2026-01-03T12:09:48.283909", "action": "create_folder", "path": "flask_project\\app\\routes"}
+{"time": "2026-01-03T12:09:48.283909", "action": "create_folder", "path": "flask_project\\templates"}
+{"time": "2026-01-03T12:09:48.283909", "action": "create_folder", "path": "flask_project\\static"}
+{"time": "2026-01-03T12:09:48.283909", "action": "create_file", "path": "flask_project\\app\\__init__.py"}
+{"time": "2026-01-03T12:09:48.283909", "action": "create_file", "path": "flask_project\\app\\models\\__init__.py"}
+{"time": "2026-01-03T12:09:48.290258", "action": "create_file", "path": "flask_project\\app\\routes\\__init__.py"}
+{"time": "2026-01-03T12:09:48.290258", "action": "create_file", "path": "flask_project\\app.py"}
+{"time": "2026-01-03T12:09:48.291273", "action": "create_file", "path": "flask_project\\requirements.txt"}

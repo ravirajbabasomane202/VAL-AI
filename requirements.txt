@@ -3,3 +3,5 @@ sounddevice>=0.4.6
 pyttsx3>=2.90
 ollama>=0.0.1   # placeholder, Ollama is native binary; keep for clarity
 webrtcvad>=2.0.10
+psutil
+watchdog

@@ -143,6 +143,42 @@ class MainAgent:
         self.last_tick = current_time
 
 
+# Add to CriticAgent class
+def evaluate_with_logging(self, plan: List[Dict[str, Any]]) -> Dict[str, Any]:
+    """Evaluate plan with thought logging"""
+    
+    # Log start of evaluation
+    from core.thought_logger import thought_logger
+    thought_logger.log_thought(
+        "evaluation_start",
+        "Starting plan evaluation",
+        metadata={"plan_size": len(plan)}
+    )
+    
+    # Original evaluation logic
+    result = self.evaluate(plan)
+    
+    # Log result
+    thought_logger.log_thought(
+        "evaluation_complete",
+        f"Evaluation complete: {result['risk_level']} risk",
+        confidence=0.9,
+        metadata=result
+    )
+    
+    # Log criticisms
+    if result.get('details'):
+        for risk in result['details']:
+            thought_logger.log_criticism(
+                warning=f"Risk detected: {risk['pattern']}",
+                severity=risk['level'],
+                suggestion="Consider confirmation before execution"
+            )
+    
+    return result
+
+
+
 # Global instances
 critic_agent = CriticAgent()
 agent = MainAgent()

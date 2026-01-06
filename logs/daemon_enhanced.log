@@ -129,3 +129,20 @@ AttributeError: 'NoneType' object has no attribute 'get'
 2026-01-03 12:20:43,810 INFO Daemon stopped by voice command
 2026-01-03 17:28:10,191 INFO Raj enhanced daemon started
 2026-01-03 17:28:23,113 INFO Daemon stopped by user (KeyboardInterrupt)
+2026-01-03 17:29:32,180 INFO Raj enhanced daemon started
+2026-01-03 17:29:47,818 INFO Voice command: create before the
+2026-01-03 17:30:17,992 INFO Extracted intent: {'intent': None, 'raw': 'create before the', 'requires_confirmation': False, 'confidence': 0.5}
+2026-01-03 17:30:17,993 INFO State transition: idle -> listening
+2026-01-03 17:35:39,843 INFO Voice command: said hey right that gadson
+2026-01-03 17:36:06,651 INFO Extracted intent: {'intent': 'greet', 'name': 'gadson', 'confidence': 0.9, '_memory': {'has_context': True, 'last_project': None, 'session_state': 'listening'}}
+2026-01-03 17:36:06,651 INFO State transition: listening -> thinking
+2026-01-03 17:36:06,746 INFO State transition: thinking -> executing
+2026-01-03 17:36:06,828 ERROR Error in enhanced daemon loop
+Traceback (most recent call last):
+  File "D:\Company_Data\val\daemon\service.py", line 320, in run
+    workflow_result = after_intent_execution(intent_to_execute, {"path": SESSION.get("last_project", {}).get("path", ""), "scope": "global"})
+AttributeError: 'NoneType' object has no attribute 'get'
+2026-01-03 17:36:06,996 INFO State transition: executing -> idle
+2026-01-03 17:38:11,707 INFO Voice command: cancer
+2026-01-03 17:38:19,494 INFO Extracted intent: {'intent': 'autonomous_mode', 'plan': [{'intent': 'search', 'query': 'cancer'}, {'intent': 'research', 'subject': 'cancer'}], 'confidence': 0.9, '_memory': {'has_context': True, 'last_project': None, 'session_state': 'idle'}}
+2026-01-03 17:38:19,494 INFO State transition: idle -> listening

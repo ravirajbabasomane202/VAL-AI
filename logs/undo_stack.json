@@ -1,0 +1,195 @@
+[
+  {
+    "timestamp": "2026-01-05T17:04:07.132792",
+    "operation": "create_project",
+    "details": {
+      "path": "D:\\Company_Data\\AdvancedLearner",
+      "type": "folder"
+    },
+    "undo_action": "delete_project"
+  },
+  {
+    "timestamp": "2026-01-05T17:04:07.133803",
+    "operation": "create_folder",
+    "details": {
+      "path": "D:\\Company_Data\\AdvancedLearner\\ingest"
+    },
+    "undo_action": "delete_folder"
+  },
+  {
+    "timestamp": "2026-01-05T17:04:07.133803",
+    "operation": "create_folder",
+    "details": {
+      "path": "D:\\Company_Data\\AdvancedLearner\\processing"
+    },
+    "undo_action": "delete_folder"
+  },
+  {
+    "timestamp": "2026-01-05T17:04:07.134801",
+    "operation": "create_folder",
+    "details": {
+      "path": "D:\\Company_Data\\AdvancedLearner\\dataset"
+    },
+    "undo_action": "delete_folder"
+  },
+  {
+    "timestamp": "2026-01-05T17:04:07.135798",
+    "operation": "create_folder",
+    "details": {
+      "path": "D:\\Company_Data\\AdvancedLearner\\embeddings"
+    },
+    "undo_action": "delete_folder"
+  },
+  {
+    "timestamp": "2026-01-05T17:04:07.136801",
+    "operation": "create_folder",
+    "details": {
+      "path": "D:\\Company_Data\\AdvancedLearner\\storage"
+    },
+    "undo_action": "delete_folder"
+  },
+  {
+    "timestamp": "2026-01-05T17:04:07.136801",
+    "operation": "create_folder",
+    "details": {
+      "path": "D:\\Company_Data\\AdvancedLearner\\utils"
+    },
+    "undo_action": "delete_folder"
+  },
+  {
+    "timestamp": "2026-01-05T17:04:07.138801",
+    "operation": "create_file",
+    "details": {
+      "path": "D:\\Company_Data\\AdvancedLearner\\README.md"
+    },
+    "undo_action": "delete_file"
+  },
+  {
+    "timestamp": "2026-01-05T17:04:07.139802",
+    "operation": "create_file",
+    "details": {
+      "path": "D:\\Company_Data\\AdvancedLearner\\ingest\\pdf_loader.py"
+    },
+    "undo_action": "delete_file"
+  },
+  {
+    "timestamp": "2026-01-05T17:04:07.141799",
+    "operation": "create_file",
+    "details": {
+      "path": "D:\\Company_Data\\AdvancedLearner\\ingest\\docx_loader.py"
+    },
+    "undo_action": "delete_file"
+  },
+  {
+    "timestamp": "2026-01-05T17:04:07.142801",
+    "operation": "create_file",
+    "details": {
+      "path": "D:\\Company_Data\\AdvancedLearner\\ingest\\txt_loader.py"
+    },
+    "undo_action": "delete_file"
+  },
+  {
+    "timestamp": "2026-01-05T17:04:07.143307",
+    "operation": "create_file",
+    "details": {
+      "path": "D:\\Company_Data\\AdvancedLearner\\processing\\cleaner.py"
+    },
+    "undo_action": "delete_file"
+  },
+  {
+    "timestamp": "2026-01-05T17:04:07.146321",
+    "operation": "create_file",
+    "details": {
+      "path": "D:\\Company_Data\\AdvancedLearner\\processing\\semantic_chunker.py"
+    },
+    "undo_action": "delete_file"
+  },
+  {
+    "timestamp": "2026-01-05T17:04:07.148315",
+    "operation": "create_file",
+    "details": {
+      "path": "D:\\Company_Data\\AdvancedLearner\\processing\\metadata_enricher.py"
+    },
+    "undo_action": "delete_file"
+  },
+  {
+    "timestamp": "2026-01-05T17:04:07.149314",
+    "operation": "create_file",
+    "details": {
+      "path": "D:\\Company_Data\\AdvancedLearner\\processing\\qa_generator.py"
+    },
+    "undo_action": "delete_file"
+  },
+  {
+    "timestamp": "2026-01-05T17:04:07.150315",
+    "operation": "create_file",
+    "details": {
+      "path": "D:\\Company_Data\\AdvancedLearner\\processing\\duplicate_detector.py"
+    },
+    "undo_action": "delete_file"
+  },
+  {
+    "timestamp": "2026-01-05T17:04:07.151348",
+    "operation": "create_file",
+    "details": {
+      "path": "D:\\Company_Data\\AdvancedLearner\\dataset\\builder.py"
+    },
+    "undo_action": "delete_file"
+  },
+  {
+    "timestamp": "2026-01-05T17:04:07.153868",
+    "operation": "create_file",
+    "details": {
+      "path": "D:\\Company_Data\\AdvancedLearner\\embeddings\\embedder.py"
+    },
+    "undo_action": "delete_file"
+  },
+  {
+    "timestamp": "2026-01-05T17:04:07.154875",
+    "operation": "create_file",
+    "details": {
+      "path": "D:\\Company_Data\\AdvancedLearner\\storage\\chroma_store.py"
+    },
+    "undo_action": "delete_file"
+  },
+  {
+    "timestamp": "2026-01-05T17:04:07.155875",
+    "operation": "create_file",
+    "details": {
+      "path": "D:\\Company_Data\\AdvancedLearner\\storage\\graph_store.py"
+    },
+    "undo_action": "delete_file"
+  },
+  {
+    "timestamp": "2026-01-05T17:04:07.157877",
+    "operation": "create_file",
+    "details": {
+      "path": "D:\\Company_Data\\AdvancedLearner\\utils\\logger.py"
+    },
+    "undo_action": "delete_file"
+  },
+  {
+    "timestamp": "2026-01-05T17:04:07.159883",
+    "operation": "create_file",
+    "details": {
+      "path": "D:\\Company_Data\\AdvancedLearner\\utils\\file_watcher.py"
+    },
+    "undo_action": "delete_file"
+  },
+  {
+    "timestamp": "2026-01-05T17:04:07.160875",
+    "operation": "create_file",
+    "details": {
+      "path": "D:\\Company_Data\\AdvancedLearner\\main.py"
+    },
+    "undo_action": "delete_file"
+  },
+  {
+    "timestamp": "2026-01-05T17:04:07.162878",
+    "operation": "create_file",
+    "details": {
+      "path": "D:\\Company_Data\\AdvancedLearner\\.gitignore"
+    },
+    "undo_action": "delete_file"
+  }
+]

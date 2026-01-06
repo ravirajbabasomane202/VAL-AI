@@ -60,6 +60,15 @@ class Memory:
         )
         """)
         
+        # Migration: Ensure unique index for memory table (prevent duplicates)
+        self.conn.execute("""
+        DELETE FROM memory 
+        WHERE id NOT IN (
+            SELECT MAX(id) FROM memory GROUP BY key
+        )
+        """)
+        self.conn.execute("CREATE UNIQUE INDEX IF NOT EXISTS idx_memory_key ON memory (key)")
+        
         # Events/actions log
         self.conn.execute("""
         CREATE TABLE IF NOT EXISTS events (
@@ -79,13 +88,22 @@ class Memory:
         CREATE TABLE IF NOT EXISTS projects (
             id INTEGER PRIMARY KEY AUTOINCREMENT,
             name TEXT NOT NULL,
-            path TEXT NOT NULL,
+            path TEXT UNIQUE NOT NULL,
             project_type TEXT,
             blueprint TEXT,
             created_at TEXT NOT NULL,
             last_accessed TEXT
         )
         """)
+        
+        # Migration: Remove duplicates if any (keep latest), then ensure unique index
+        self.conn.execute("""
+        DELETE FROM projects 
+        WHERE id NOT IN (
+            SELECT MAX(id) FROM projects GROUP BY path
+        )
+        """)
+        self.conn.execute("CREATE UNIQUE INDEX IF NOT EXISTS idx_projects_path ON projects (path)")
         
         # User preferences
         self.conn.execute("""
